@@ -1,5 +1,5 @@
-resource "azurerm_resource_group" "VkRG" {
-  for_each = var.vivekRG
-  name     = each.value.name
+resource "azurerm_resource_group" "PROD-RG" {
+  for_each = var.prod_rg
+  name     = each.value.rgname
   location = each.value.location
 }

@@ -1,3 +1,3 @@
-variable "VMVnet" {
+variable "cpvnet" {
   type = map(any)
 }
