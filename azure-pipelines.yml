@@ -31,14 +31,15 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'plan'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/Production-env'
             environmentServiceNameAzureRM: 'vkt-pipeline'
         
-        # - task: TerraformTaskV4@4
-        #   inputs:
-        #     provider: 'azurerm'
-        #     command: 'init'
-        #     backendServiceArm: 'vkt-pipeline'
-        #     backendAzureRmResourceGroupName: 'tfstaterg'
-        #     backendAzureRmStorageAccountName: 'saccountfstate'
-        #     backendAzureRmContainerName: 'tfstatefilestore'
-        #     backendAzureRmKey: 'infra'
+        - task: TerraformTaskV4@4
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            backendServiceArm: 'vkt-pipeline'
+            backendAzureRmResourceGroupName: 'tfstaterg'
+            backendAzureRmStorageAccountName: 'saccountfstate'
+            backendAzureRmContainerName: 'tfstatefilestore'
+            backendAzureRmKey: 'infra'
