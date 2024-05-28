@@ -6,7 +6,7 @@ stages:
   - stage: buildProcess
     displayName: BUIL Process
     jobs:
-      - job: Buil
+      - job: Build
         steps:
         - task: TerraformInstaller@1
           inputs:
@@ -21,3 +21,24 @@ stages:
             backendAzureRmStorageAccountName: 'saccountfstate'
             backendAzureRmContainerName: 'tfstatefilestore'
             backendAzureRmKey: 'infra'
+
+  - stage: terrafornplan
+    displayName: terrafrom plan
+    jobs:
+      - job: terraformplan
+        steps:
+        - task: TerraformTaskV4@4
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
+            environmentServiceNameAzureRM: 'vkt-pipeline'
+        
+        # - task: TerraformTaskV4@4
+        #   inputs:
+        #     provider: 'azurerm'
+        #     command: 'init'
+        #     backendServiceArm: 'vkt-pipeline'
+        #     backendAzureRmResourceGroupName: 'tfstaterg'
+        #     backendAzureRmStorageAccountName: 'saccountfstate'
+        #     backendAzureRmContainerName: 'tfstatefilestore'
+        #     backendAzureRmKey: 'infra'
